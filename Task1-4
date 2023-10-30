@@ -1,32 +1,15 @@
-#Check if nginx is installed
-if command -v nginx &> /dev/null
-then
-   echo"NGINX is installed."
 
-   #Check if its running
-   if pgrep nginx &> /dev/null
-   then
-      echo"Nginx already running"
-   else
-      echo"Nginx not running"
-      sudo service nginx start
-   fi
-else
-   echo"NGINX not installed"
-   apt-get update
-   apt-get install nginx -y
+sudo apt-get update
+sudo apt-get install nginx -y
+#Start nginx after installation
+sudo service nginx start
+#Enable Nginx to start on boot
+sudo systemctl enable nginx
+  
 
-   #Start nginx after installation
-   service nginx start
-
-   #Enable Nginx to start on boot
-   systemctl enable nginx
-   echo"Nginx is installed and running"
-fi
 cd/var/www/html.
 mkdir labs
 cd labs
-chown $(whoami) labs??????
 
 ln -s /var/labs ~/html
 touch index.html
